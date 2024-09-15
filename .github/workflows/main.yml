@@ -15,3 +15,12 @@ jobs:
         uses: ./.github/actions/android
       - name: "Build setup"
         uses: ./.github/actions/build
+      - name: Trigger deployment workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/setup.yml/dispatches \
+            -d '{"ref":"main"}'  
