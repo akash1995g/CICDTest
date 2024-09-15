@@ -58,3 +58,14 @@ jobs:
 
       - name: Restore Gradle cache
         run: echo "Build"
+
+  parallel:
+    name: Build Project
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Gradle cache
+        run: echo "Build"      
