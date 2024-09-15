@@ -1,5 +1,9 @@
 name: Sequence Action with needs tag
 
+# adding needs tage to job will make it depend on other jobs in the sequence
+# needs: [job1, job2, job3]
+# for parallel job don't add needs tag
+
 on:
   push:
     branches: ["master"]
@@ -53,3 +57,15 @@ jobs:
 
       - name: Restore Gradle cache
         run: echo "Build"
+
+build-project:
+    name: Build Project
+    runs-on: self-hosted
+    needs: sonarqube-check
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Gradle cache
+        run: echo "Build"        

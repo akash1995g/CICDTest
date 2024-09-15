@@ -1,5 +1,10 @@
 name: Sequence Action with needs tag
 
+
+# adding needs tage to job will make it depend on other jobs in the sequence
+# needs: [job1, job2, job3]
+# for parallel job don't add needs tag
+
 on:
   push:
     branches: ["main"]
