@@ -1,0 +1,17 @@
+name: UI
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  workflow_run:
+    workflows: [ "Build" ]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Echo a message
+        run: echo "UI"

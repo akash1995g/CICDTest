@@ -1,0 +1,17 @@
+name: Main
+
+on:
+    push:
+        branches:
+            - 'master'
+    workflow_dispatch :
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: "start setup"
+        uses: ./.github/actions/android
+      - name: "start setup"
+        uses: ./.github/actions/build
