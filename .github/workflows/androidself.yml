@@ -1,4 +1,4 @@
-name: Sequence Action with needs tag
+name: Sequence Action
 
 # adding needs tage to job will make it depend on other jobs in the sequence
 # needs: [job1, job2, job3]
