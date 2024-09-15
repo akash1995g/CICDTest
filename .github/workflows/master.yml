@@ -1,0 +1,49 @@
+name: Main
+
+on:
+    push:
+        branches:
+            - 'main'
+    workflow_dispatch :
+
+jobs:
+  setup:
+    name: Master
+    runs-on: self-hosted
+    steps:
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/setup.yml/dispatches \
+            -d '{"ref":"main"}' 
+  UI-Test:
+    name: UI
+    runs-on: self-hosted
+    needs: setup
+    steps:
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/ui.yml/dispatches \
+            -d '{"ref":"main"}'  
+
+  Unit-test:
+    name: Unit test
+    runs-on: self-hosted
+    needs: setup
+    steps:
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/unittest.yml/dispatches \
+            -d '{"ref":"main"}'              
+
