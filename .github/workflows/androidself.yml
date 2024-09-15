@@ -1,4 +1,4 @@
-name: Quality Check With Stages
+name: Sequence Action
 
 on:
   push:
