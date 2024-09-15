@@ -11,6 +11,7 @@ jobs:
     name: Master
     runs-on: self-hosted
     steps:
+      - name: Setup
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
         run: |
@@ -24,6 +25,7 @@ jobs:
     runs-on: self-hosted
     needs: setup
     steps:
+      - name: UI
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
         run: |
@@ -38,6 +40,7 @@ jobs:
     runs-on: self-hosted
     needs: setup
     steps:
+      - name: Unit test
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ID }}
         run: |
