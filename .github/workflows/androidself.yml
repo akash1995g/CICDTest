@@ -1,4 +1,4 @@
-name: Sequence Action
+name: Sequence Action with needs tag
 
 on:
   push:
@@ -14,9 +14,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
-      
+        uses: actions/checkout@v4 
+      - name: "checkout code"
+        run: echo "Checkout"  
 
   spotless-check:
     name: Spotless Check
