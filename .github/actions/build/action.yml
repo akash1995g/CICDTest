@@ -1,9 +1,9 @@
-name: Setup
+name: Build
 description: "Test"
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v4
-    - name: Setup
+    - name: Action build
       shell: bash
-      run: echo "setup"
+      run: echo "Build"
